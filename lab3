@@ -1,0 +1,445 @@
+Low Level:
+1. Write a Python program to create a dictionary where the keys are numbers from 1 to 5 and the values are their squares.
+# Create an empty dictionary
+square_dict = {}
+
+# Iterate over numbers from 1 to 5
+for num in range(1, 6):
+    # Assign the square of the number as the value to the dictionary with the number as the key
+    square_dict[num] = num ** 2
+
+# Print the resulting dictionary
+print(square_dict)
+Sample Output :
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+2. Write a Python program to print a dictionary in table format.
+# Sample dictionary
+data = {'Name': ['John', 'Alice', 'Bob'],
+        'Age': [25, 30, 35],
+        'City': ['New York', 'Paris', 'London']}
+
+# Find the maximum length of each key for formatting
+max_lengths = {key: max(len(str(key)), max(len(str(x)) for x in values)) for key, values in data.items()}
+
+# Print table headers
+print("|", end="")
+for key, max_length in max_lengths.items():
+    print(f" {key.ljust(max_length)} |", end="")
+print()
+
+# Print separator
+print("+", end="")
+for _, max_length in max_lengths.items():
+    print(f"-{'-' * max_length}-+", end="")
+print()
+
+# Print table rows
+for i in range(len(data['Name'])):
+    print("|", end="")
+    for key, values in data.items():
+        print(f" {str(values[i]).ljust(max_lengths[key])} |", end="")
+    print()
+
+# Print separator
+print("+", end="")
+for _, max_length in max_lengths.items():
+    print(f"-{'-' * max_length}-+", end="")
+print()
+Sample Output :
+| Name   | Age | City    |
++--------+-----+---------+
+| John   | 25  | New York|
+| Alice  | 30  | Paris   |
+| Bob    | 35  | London  |
++--------+-----+---------+
+3. Write a Python program to find the second largest value in a dictionary.
+# Sample dictionary
+data = {'a': 10, 'b': 20, 'c': 30, 'd': 15, 'e': 25}
+
+# Get the unique values and sort them in descending order
+unique_values = sorted(set(data.values()), reverse=True)
+
+# If there are at least two unique values, the second largest exists
+if len(unique_values) >= 2:
+    second_largest = unique_values[1]
+    # Find the corresponding key(s) for the second largest value
+    keys = [key for key, value in data.items() if value == second_largest]
+    print(f"The second largest value in the dictionary is {second_largest}.")
+    print(f"It appears with key(s): {keys}")
+else:
+    print("There is no second largest value in the dictionary.")
+Sample Output :
+The second largest value in the dictionary is 25.
+It appears with key(s): ['e']
+4. Write a Python program to combine two dictionaries by adding values for common keys.
+# Sample dictionaries
+dict1 = {'a': 10, 'b': 20, 'c': 30}
+dict2 = {'b': 30, 'c': 40, 'd': 50}
+
+# Combine dictionaries by adding values for common keys
+combined_dict = {}
+
+# Iterate over keys in dict1
+for key in dict1:
+    # If key is present in dict2, add the values together
+    if key in dict2:
+        combined_dict[key] = dict1[key] + dict2[key]
+    # Otherwise, add the value from dict1 to the combined dictionary
+    else:
+        combined_dict[key] = dict1[key]
+
+# Iterate over keys in dict2 to add remaining keys
+for key in dict2:
+    # If key is not present in combined_dict, add the value from dict2
+    if key not in combined_dict:
+        combined_dict[key] = dict2[key]
+
+print("Combined dictionary:", combined_dict)
+Sample Output :
+Combined dictionary: {'a': 10, 'b': 50, 'c': 70, 'd': 50}
+5. Write a Python program to convert a dictionary of lists into a list of dictionaries.
+# Sample dictionary of lists
+dict_of_lists = {'Name': ['John', 'Alice', 'Bob'],
+                 'Age': [25, 30, 35],
+                 'City': ['New York', 'Paris', 'London']}
+
+# Get the length of the lists (assuming all lists have the same length)
+list_length = len(next(iter(dict_of_lists.values())))
+
+# Initialize an empty list to store dictionaries
+list_of_dicts = []
+
+# Iterate over the range of list length
+for i in range(list_length):
+    # Create a new dictionary for each index
+    new_dict = {}
+    # Populate the new dictionary with values from the original dictionary
+    for key, values in dict_of_lists.items():
+        new_dict[key] = values[i]
+    # Append the new dictionary to the list
+    list_of_dicts.append(new_dict)
+
+# Print the list of dictionaries
+for dictionary in list_of_dicts:
+    print(dictionary)
+Sample Output:
+{'Name': 'John', 'Age': 25, 'City': 'New York'}
+{'Name': 'Alice', 'Age': 30, 'City': 'Paris'}
+{'Name': 'Bob', 'Age': 35, 'City': 'London'}
+6. Write a Python program to create a dictionary from two lists, where one list contains keys and the other contains values.
+# Sample lists of keys and values
+keys = ['Name', 'Age', 'City']
+values = ['John', 25, 'New York']
+
+# Create dictionary from two lists
+result_dict = dict(zip(keys, values))
+
+# Print the resulting dictionary
+print("Dictionary from two lists:", result_dict)
+Sample Output :
+Dictionary from two lists: {'Name': 'John', 'Age': 25, 'City': 'New York'}
+7. Write a Python program to create a dictionary of dictionaries.
+# Define inner dictionaries
+inner_dict1 = {'a': 1, 'b': 2, 'c': 3}
+inner_dict2 = {'x': 10, 'y': 20, 'z': 30}
+
+# Create dictionary of dictionaries
+outer_dict = {'dict1': inner_dict1, 'dict2': inner_dict2}
+
+# Print the resulting dictionary of dictionaries
+print("Dictionary of dictionaries:", outer_dict)
+Sample Output :
+Dictionary of dictionaries: {'dict1': {'a': 1, 'b': 2, 'c': 3}, 'dict2': {'x': 10, 'y': 20, 'z': 30}}
+8. Write a Python program to multiply all the values in a dictionary.
+# Sample dictionary
+data = {'a': 2, 'b': 3, 'c': 4}
+
+# Initialize the product variable to 1
+product = 1
+
+# Multiply all values together
+for value in data.values():
+    product *= value
+
+# Print the product
+print("Product of all values in the dictionary:", product)
+Sample Output 
+Product of all values in the dictionary: 24
+9. Write a Python program to sort a dictionary by its keys.
+# Sample dictionary
+data = {'b': 2, 'a': 1, 'c': 3}
+
+# Sort the dictionary by keys
+sorted_data = dict(sorted(data.items()))
+
+# Print the sorted dictionary
+print("Sorted dictionary by keys:", sorted_data)
+Sample Output :
+Sorted dictionary by keys: {'a': 1, 'b': 2, 'c': 3}
+10. Write a Python program to update the values of a specific key in a dictionary.
+# Sample dictionary
+data = {'a': 1, 'b': 2, 'c': 3}
+
+# Update the value of key 'b'
+data['b'] = 20
+
+# Print the updated dictionary
+print("Updated dictionary:", data)
+Sample Output :
+Updated dictionary: {'a': 1, 'b': 20, 'c': 3}
+Medium Level:
+1. You are developing a voting system for a school election. Write a Python program to count the number of votes each candidate receives and store the results in a dictionary.
+Sample Dictionary: votes = {'Candidate1': 150, 'Candidate2': 200, 'Candidate3': 180}
+Sample Output: Candidate1: 150, Candidate2: 200, Candidate3: 180
+Note : input from the user
+# Initialize an empty dictionary to store the votes
+votes = {}
+
+# Get the number of candidates from the user
+num_candidates = int(input("Enter the number of candidates: "))
+
+# Get the votes for each candidate from the user
+for i in range(1, num_candidates + 1):
+    candidate_name = input(f"Enter the name of candidate {i}: ")
+    vote_count = int(input(f"Enter the number of votes for {candidate_name}: "))
+    votes[candidate_name] = vote_count
+
+# Print the dictionary of votes
+print("Dictionary of votes:", votes)
+
+# Print the output
+print("Output:")
+for candidate, count in votes.items():
+    print(f"{candidate}: {count}")
+Sample Output :
+Enter the number of candidates: 3
+Enter the name of candidate 1: Candidate1
+Enter the number of votes for Candidate1: 150
+Enter the name of candidate 2: Candidate2
+Enter the number of votes for Candidate2: 200
+Enter the name of candidate 3: Candidate3
+Enter the number of votes for Candidate3: 180
+
+Dictionary of votes: {'Candidate1': 150, 'Candidate2': 200, 'Candidate3': 180}
+Output:
+Candidate1: 150
+Candidate2: 200
+Candidate3: 180
+2. You are implementing a word frequency counter for a text processing application. Write a Python program to count the frequency of each word in a given text and store the results in a dictionary.
+Sample Text: "This is a sample text. This text contains sample words."
+Sample Output: {'This': 2, 'is': 1, 'a': 1, 'sample': 2, 'text.': 1, 'contains': 1, 'words.': 1}
+# Get the input text from the user
+text = input("Enter the text: ")
+
+# Split the text into words
+words = text.split()
+
+# Initialize an empty dictionary to store word frequencies
+word_freq = {}
+
+# Count the frequency of each word
+for word in words:
+    # Remove punctuation marks from the word
+    word = word.strip('.,?!')
+    # Convert the word to lowercase to ensure case-insensitive counting
+    word = word.lower()
+    # Update the frequency count for the word
+    word_freq[word] = word_freq.get(word, 0) + 1
+
+# Print the dictionary of word frequencies
+print("Word frequency count:")
+print(word_freq)
+sample output :
+Enter the text: This is a sample text. This text contains sample words.
+Word frequency count:
+{'this': 2, 'is': 1, 'a': 1, 'sample': 2, 'text': 1, 'contains': 1, 'words': 1}
+3. You are designing a dictionary-based translator. Write a Python program to translate a sentence from English to another language using a dictionary containing English-to-foreign language mappings.
+Sample Dictionary: translations = {'hello': 'bonjour', 'world': 'monde'}
+Sample Output: 'bonjour monde'
+# Sample dictionary of translations
+translations = {'hello': 'bonjour', 'world': 'monde'}
+
+# Sample English sentence
+sentence = input("Enter the English sentence: ")
+
+# Translate the sentence using the dictionary
+translated_sentence = ' '.join(translations.get(word, word) for word in sentence.split())
+
+# Print the translated sentence
+print("Translated sentence:", translated_sentence)
+Sample output :
+Enter the English sentence: hello world
+Translated sentence: bonjour monde
+5. You have a dictionary representing student grades in various subjects. Write a Python program to calculate the average grade for each student.
+Sample Dictionary: grades = {'John': [85, 90, 88], 'Alice': [75, 80, 82], 'Bob': [92, 88, 90]}
+Sample Output: John: 87.67, Alice: 79.00, Bob: 90.00
+# Initialize an empty dictionary to store student grades
+grades = {}
+
+# Get the number of students from the user
+num_students = int(input("Enter the number of students: "))
+
+# Get the grades for each student from the user
+for i in range(num_students):
+    student_name = input(f"Enter the name of student {i+1}: ")
+    student_grades = input(f"Enter the grades for {student_name} (comma-separated): ").split(',')
+    student_grades = [int(grade.strip()) for grade in student_grades]  # Convert grades to integers
+    grades[student_name] = student_grades
+
+# Calculate the average grade for each student
+average_grades = {student: sum(grades) / len(grades) for student, grades in grades.items()}
+
+# Print the average grades
+print("Average grades:")
+for student, avg_grade in average_grades.items():
+    print(f"{student}: {avg_grade:.2f}")
+Sample Output :
+Enter the number of students: 3
+Enter the name of student 1: John
+Enter the grades for John (comma-separated): 85, 90, 88
+Enter the name of student 2: Alice
+Enter the grades for Alice (comma-separated): 75, 80, 82
+Enter the name of student 3: Bob
+Enter the grades for Bob (comma-separated): 92, 88, 90
+Average grades:
+John: 87.67
+Alice: 79.00
+Bob: 90.00
+
+High Level Questions:
+1. You are developing a movie recommendation system. Write a Python program to recommend movies to a user based on their preferences stored in a dictionary.
+Sample Dictionary: preferences = {'Action': ['The Dark Knight', 'Inception'], 'Comedy': ['The Hangover', 'Superbad']}
+Sample Output: Recommendations: ['The Dark Knight', 'Inception']
+# Initialize an empty dictionary to store preferences
+preferences = {}
+
+# Get the number of genres from the user
+num_genres = int(input("Enter the number of genres: "))
+
+# Get the preferences for each genre from the user
+for _ in range(num_genres):
+    genre = input("Enter the genre: ")
+    movies = input(f"Enter the movies for {genre} (comma-separated): ").split(',')
+    preferences[genre] = [movie.strip() for movie in movies]
+
+# Get the user's movie preferences
+user_preferences = input("Enter your movie preferences (comma-separated): ").split(',')
+
+# Initialize an empty list to store movie recommendations
+recommendations = []
+
+# Check each genre in preferences
+for genre, movies in preferences.items():
+    # Check if any movies in the genre are not already in the user preferences
+    recommended_movies = [movie for movie in movies if movie not in user_preferences]
+    # Add recommended movies to the recommendations list
+    recommendations.extend(recommended_movies)
+
+# Print the recommendations
+print("Recommendations:", recommendations)
+Sample Output :
+Enter the number of genres: 2
+Enter the genre: Action
+Enter the movies for Action (comma-separated): The Dark Knight, Inception
+Enter the genre: Comedy
+Enter the movies for Comedy (comma-separated): The Hangover, Superbad
+Enter your movie preferences (comma-separated): Inception, The Hangover
+Recommendations: ['The Dark Knight', 'Superbad']
+2. You are developing a dictionary-based spelling checker. Write a Python program to check the spelling of words in a document using a dictionary of valid words.
+Sample Dictionary: valid_words = {'apple', 'banana', 'orange', 'grape'}
+Sample Output: Misspelled words: ['aple', 'bannana']
+# Sample set of valid words
+valid_words = {'apple', 'banana', 'orange', 'grape'}
+
+# Get the input document from the user
+document = input("Enter the document: ")
+
+# Split the document into words
+words = document.split()
+
+# Initialize an empty list to store misspelled words
+misspelled_words = []
+
+# Check each word in the document
+for word in words:
+    # Check if the word is not in the set of valid words
+    if word.lower() not in valid_words:
+        misspelled_words.append(word)
+
+# Print the misspelled words
+print("Misspelled words:", misspelled_words)
+Sample output :
+Enter the document: apple banana grape strawberry
+Misspelled words: ['strawberry']
+3. You're creating a budget tracking application. Write a Python program to calculate the total expenses for each category stored in a dictionary.
+Sample Dictionary: expenses = {'Food': [100, 150], 'Transportation': [50, 75], 'Entertainment': [75, 100]}
+Sample Test Case: expenses
+Sample Output: {'Food': 250, 'Transportation': 125, 'Entertainment': 175}
+# Get the expenses from the user
+expenses = {}
+
+# Get the number of categories from the user
+num_categories = int(input("Enter the number of categories: "))
+
+# Get the expenses for each category from the user
+for _ in range(num_categories):
+    category = input("Enter the category: ")
+    amounts = input(f"Enter the expenses for {category} (comma-separated): ").split(',')
+    expenses[category] = [int(amount.strip()) for amount in amounts]
+
+# Calculate the total expenses for each category
+total_expenses = {category: sum(amounts) for category, amounts in expenses.items()}
+
+# Print the total expenses for each category
+print("Total expenses:")
+print(total_expenses)
+Sample output :
+Enter the number of categories: 3
+Enter the category: Food
+Enter the expenses for Food (comma-separated): 100, 150
+Enter the category: Transportation
+Enter the expenses for Transportation (comma-separated): 50, 75
+Enter the category: Entertainment
+Enter the expenses for Entertainment (comma-separated): 75, 100
+Total expenses:
+{'Food': 250, 'Transportation': 125, 'Entertainment': 175}
+4. You're developing a hotel reservation system. Write a Python program to check the availability of rooms for a given date stored in a dictionary.
+Sample Dictionary: room_availability = {'Standard': {'2024-04-12': 10, '2024-04-13': 5}, 'Deluxe': {'2024-04-12': 5, '2024-04-13': 2}}
+Sample Test Case: '2024-04-13'
+Sample Output: {'Standard': 5, 'Deluxe': 2}
+# Sample dictionary of room availability
+room_availability = {
+    'Standard': {'2024-04-12': 10, '2024-04-13': 5},
+    'Deluxe': {'2024-04-12': 5, '2024-04-13': 2}
+}
+
+# Get the date from the user
+date = input("Enter the date (YYYY-MM-DD): ")
+
+# Check the availability of rooms for the given date
+availability = {room_type: availability.get(date, 0) for room_type, availability in room_availability.items()}
+
+# Print the availability of rooms for the given date
+print("Room availability for", date + ":", availability)
+Sample Output:
+Enter the date (YYYY-MM-DD): 2024-04-13
+Room availability for 2024-04-13: {'Standard': 5, 'Deluxe': 2}
+5. Write a Python program to print all distinct values in a dictionary.
+Sample Data : [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]
+Expected Output : Unique Values: {'S005', 'S002', 'S007', 'S001', 'S009'}
+# Sample list of dictionaries
+data = [{"V": "S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII": "S005"}, {"V": "S009"}, {"VIII": "S007"}]
+
+# Extract values from the dictionaries
+values = [value for item in data for value in item.values()]
+
+# Convert the list of values to a set to get distinct values
+unique_values = set(values)
+
+# Print the unique values
+print("Unique Values:", unique_values)
+Sample output :
+Unique Values: {'S005', 'S002', 'S007', 'S001', 'S009'}
+
+
+
