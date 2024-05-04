@@ -1,0 +1,302 @@
+Medium Level:
+1. You have a list of strings representing words. Develop a Python program to Count the number of vowels (a, e, i, o, u) in each word and print the word along with its vowel count.
+# Sample list of words
+words = ["hello", "world", "python", "programming", "example"]
+
+# Iterate over each word in the list
+for word in words:
+    # Initialize vowel count for the current word
+    vowel_count = 0
+    
+    # Iterate over each character in the word
+    for char in word:
+        # Check if the character is a vowel (a, e, i, o, u)
+        if char.lower() in ['a', 'e', 'i', 'o', 'u']:
+            # Increment the vowel count if the character is a vowel
+            vowel_count += 1
+    
+    # Print the word along with its vowel count
+    print(f"Word: {word}, Vowel Count: {vowel_count}")
+Sample Output :
+Word: hello, Vowel Count: 2
+Word: world, Vowel Count: 1
+Word: python, Vowel Count: 1
+Word: programming, Vowel Count: 3
+Word: example, Vowel Count: 3
+2. You have a list of tuples, each representing a person's name and their corresponding age (e.g., [("Alice", 25), ("Bob", 30), ...]). Write a Python program to Calculate the average age of all the people in the list and print it.
+# Sample list of tuples representing names and ages
+people = [("Alice", 25), ("Bob", 30), ("Charlie", 40), ("David", 35)]
+
+# Initialize variables to store total age and count of people
+total_age = 0
+count = 0
+
+# Iterate over each tuple in the list
+for person in people:
+    # Extract the age from the tuple
+    age = person[1]
+    
+    # Add the age to the total age
+    total_age += age
+    
+    # Increment the count of people
+    count += 1
+
+# Calculate the average age
+average_age = total_age / count
+
+# Print the average age
+print("Average age:", average_age)
+
+Sample Output : Average age: 32.5
+3. You have two lists of integers. Develop a Python program to create a new list that contains the common elements present in both lists.
+# Sample lists of integers
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+
+# Initialize an empty list to store common elements
+common_elements = []
+
+# Iterate over each element in list1
+for element in list1:
+    # Check if the element is also present in list2
+    if element in list2:
+        # If the element is common to both lists, append it to common_elements
+        common_elements.append(element)
+
+# Print the list containing common elements
+print("Common elements:", common_elements)
+Sample Output :
+Common elements: [4, 5]
+4. You have a list of temperatures measured in Celsius. Write a Python program to Convert each temperature to Fahrenheit and print the resulting list.
+# Sample list of temperatures measured in Celsius
+temperatures_celsius = [0, 10, 20, 30, 40]
+
+# Initialize an empty list to store temperatures in Fahrenheit
+temperatures_fahrenheit = []
+
+# Convert each temperature from Celsius to Fahrenheit and append to temperatures_fahrenheit
+for celsius in temperatures_celsius:
+    fahrenheit = (celsius * 9/5) + 32
+    temperatures_fahrenheit.append(fahrenheit)
+
+# Print the resulting list of temperatures in Fahrenheit
+print("Temperatures in Fahrenheit:", temperatures_fahrenheit)
+Sample Output :
+Temperatures in Fahrenheit: [32.0, 50.0, 68.0, 86.0, 104.0]
+5. You have a list of strings representing names of students in a class. Write a Python program to Remove any duplicate names from the list and print the updated list.
+# Sample list of names of students in a class
+student_names = ["Alice", "Bob", "Charlie", "Alice", "David", "Bob", "Eve"]
+
+# Create a new list to store unique names
+unique_names = []
+
+# Iterate over each name in the original list
+for name in student_names:
+    # Check if the name is not already in the unique_names list
+    if name not in unique_names:
+        # If the name is not a duplicate, add it to the unique_names list
+        unique_names.append(name)
+
+# Print the updated list of unique names
+print("Updated list of unique names:", unique_names)
+Sample Output :
+Updated list of unique names: ['Alice', 'Bob', 'Charlie', 'David', 'Eve']
+Low Level:
+1. You have a list of tuples representing (name, age) pairs of people. Write a Python program to convert this list of tuples into a dictionary where the names are keys and the ages are values.
+# Sample list of tuples representing (name, age) pairs of people
+people = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
+
+# Initialize an empty dictionary to store the converted data
+people_dict = {}
+
+# Iterate over each tuple in the list
+for name, age in people:
+    # Add each (name, age) pair to the dictionary
+    people_dict[name] = age
+
+# Print the resulting dictionary
+print("Dictionary with names as keys and ages as values:", people_dict)
+
+Sample Output: 
+Dictionary with names as keys and ages as values: {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+2. You have a list of tuples, each containing a student's name and their corresponding scores in three subjects (Math, Physics, Chemistry). Write a Python program to sort the list of tuples based on the total score (sum of scores in all subjects) in descending order.
+# Sample list of tuples containing (name, Math score, Physics score, Chemistry score)
+students_scores = [("Alice", 90, 85, 95), ("Bob", 80, 75, 85), ("Charlie", 95, 90, 100)]
+
+# Sort the list of tuples based on the total score in descending order
+sorted_students = sorted(students_scores, key=lambda x: sum(x[1:]), reverse=True)
+
+# Print the sorted list of tuples
+print("Sorted list of tuples based on total score (in descending order):")
+for student in sorted_students:
+    print(student)
+Sample Output :
+Sorted list of tuples based on total score (in descending order):
+('Charlie', 95, 90, 100)
+('Alice', 90, 85, 95)
+('Bob', 80, 75, 85)
+3. You have two tuples representing dates in the format (year, month, day). Write a Python program to compare the two dates and print whether the first date is earlier, later, or the same as the second date.
+# Sample tuples representing dates (year, month, day)
+date1 = (2022, 10, 15)
+date2 = (2023, 5, 20)
+
+# Compare the two dates
+if date1 < date2:
+    print("The first date is earlier than the second date.")
+elif date1 > date2:
+    print("The first date is later than the second date.")
+else:
+    print("The first date is the same as the second date.")
+Sample Output:
+Sample tuples
+date1 = (2022, 10, 15)
+date2 = (2023, 5, 20)
+Expected output
+The first date is earlier than the second date.
+4. You have two tuples containing integers. Write a Python program to concatenate the two tuples and create a new tuple with the elements from both tuples.
+# Sample tuples containing integers
+tuple1 = (1, 2, 3)
+tuple2 = (4, 5, 6)
+
+# Concatenate the two tuples to create a new tuple
+new_tuple = tuple1 + tuple2
+
+# Print the new tuple
+print("Concatenated tuple:", new_tuple)
+Sample output:
+Concatenated tuple: (1, 2, 3, 4, 5, 6)
+5. You have a tuple containing the names of months in a year. Write a Python program to slice the tuple and create a new tuple containing only the names of the first half of the months.
+# Tuple containing the names of months in a year
+months = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+# Slice the tuple to get the first half of the months
+first_half_months = months[:len(months)//2]
+
+# Print the new tuple containing the names of the first half of the months
+print("Names of the first half of the months:", first_half_months)
+Sample Output :
+Names of the first half of the months: ('January', 'February', 'March', 'April', 'May', 'June')
+High Level:
+1. You work for a finance company that manages investment portfolios for clients. Your team is tasked with analyzing the performance of various investment instruments over time. Each instrument's performance is represented as a list of tuples, where each tuple contains the date and the corresponding value of the investment. Your task is to identify the investment instrument that has shown the highest growth rate over a specified period.
+Design a Python program to analyze the performance of investment instruments. Create lists to represent the performance data of three investment instruments over time. Then, prompt the user to enter a start and end date for the analysis period. Calculate the growth rate for each instrument over the specified period and determine which instrument has shown the highest growth rate. Display the name of the instrument along with its growth rate.
+# Define the performance data for investment instruments
+instrument1 = [("2023-01-01", 1000), ("2023-03-01", 1200), ("2023-06-01", 1400)]
+instrument2 = [("2023-01-01", 2000), ("2023-03-01", 1800), ("2023-06-01", 2500)]
+instrument3 = [("2023-01-01", 1500), ("2023-03-01", 1700), ("2023-06-01", 1800)]
+
+# Prompt the user to enter start and end dates for the analysis period
+start_date = input("Enter start date (YYYY-MM-DD): ")
+end_date = input("Enter end date (YYYY-MM-DD): ")
+
+# Calculate growth rate for each instrument over the specified period
+max_growth_rate = -1
+best_instrument = None
+
+# Function to convert date strings to integers for comparison
+def date_to_int(date):
+    year, month, day = map(int, date.split('-'))
+    return year * 10000 + month * 100 + day
+
+# Iterate over each instrument's performance data
+for instrument, data in [("Instrument 1", instrument1), ("Instrument 2", instrument2), ("Instrument 3", instrument3)]:
+    start_value = None
+    end_value = None
+
+    # Find start and end values for the specified period
+    for date, value in data:
+        if date_to_int(date) == date_to_int(start_date):
+            start_value = value
+        elif date_to_int(date) == date_to_int(end_date):
+            end_value = value
+
+    # If both start and end values are found, calculate growth rate
+    if start_value is not None and end_value is not None:
+        growth_rate = ((end_value - start_value) / start_value) * 100
+        print(f"{instrument}: Growth rate = {growth_rate:.2f}%")
+
+        # Update the instrument with the highest growth rate
+        if growth_rate > max_growth_rate:
+            max_growth_rate = growth_rate
+            best_instrument = instrument
+
+# Print the instrument with the highest growth rate
+print(f"The instrument with the highest growth rate is {best_instrument} with a growth rate of {max_growth_rate:.2f}%.")
+
+
+Sample Output :
+Instrument 1: Growth rate = 40.00%
+Instrument 2: Growth rate = 25.00%
+Instrument 3: Growth rate = 20.00%
+The instrument with the highest growth rate is Instrument 1 with a growth rate of 40.00%.
+2. You are part of a team developing an inventory management system for a retail company. The system needs to track product availability across multiple warehouses. Each warehouse is represented as a list of tuples, where each tuple contains the product identifier and the quantity available. Your task is to implement a feature that checks if a given product is available in any of the warehouses and returns the total quantity available.
+Design a Python program to implement the inventory management system. Create lists to represent three warehouses, each containing tuples of product identifiers and quantities available. Then, prompt the user to enter a product identifier and check if the product is available in any of the warehouses. If available, display the total quantity available across all warehouses; otherwise, display a message indicating that the product is out of stock.
+# Define the inventory data for three warehouses
+warehouse1 = [("product1", 50), ("product2", 30), ("product3", 20)]
+warehouse2 = [("product4", 40), ("product2", 20), ("product5", 60)]
+warehouse3 = [("product6", 70), ("product3", 10), ("product7", 25)]
+
+# Prompt the user to enter a product identifier
+product_id = input("Enter product identifier: ")
+
+# Initialize total quantity available
+total_quantity = 0
+found = False
+
+# Iterate over each warehouse's inventory to check for the product
+for warehouse in [warehouse1, warehouse2, warehouse3]:
+    for item in warehouse:
+        if item[0] == product_id:
+            total_quantity += item[1]
+            found = True
+            break  # Break the inner loop if product is found in current warehouse
+
+# Check if product is available and display the total quantity available
+if found:
+    print(f"Total quantity of product {product_id}: {total_quantity}")
+else:
+    print("Product is out of stock.")
+
+Sample Output :
+Total quantity of product product3: 30
+3. You are working for a social media analytics company. Your team is responsible for analyzing user engagement metrics to provide insights to clients. One of your tasks involves identifying trending topics based on user comments. Each comment is represented as a tuple containing the comment text and the number of likes it received. Your goal is to develop a function to identify the top trending topics based on the frequency of specific keywords mentioned in the comments.
+Design a Python function identify_trending_topics (comments: List[Tuple[str, int]], keywords: List[str]) -> List[str] that takes a list of comment tuples and a list of keywords as input. Each comment tuple consists of the comment text and the number of likes it received. The function should identify the top trending topics by counting the frequency of each keyword mentioned in the comments and return a list of keywords sorted in descending order of their frequency.
+Ensure your implementation efficiently handles cases where multiple keywords have the same frequency. Provide explanations for your design choices and any assumptions made.
+# Sample comments data
+comments = [
+    ("Great product, love the features!", 50),
+    ("The customer service was terrible, won't recommend.", 20),
+    ("Best purchase ever, highly recommended.", 100),
+    ("The delivery was delayed, very disappointed.", 10),
+    ("Amazing quality, exceeded my expectations.", 80)
+]
+
+# List of keywords to track
+keywords = ["product", "customer service", "recommend", "delivery", "quality"]
+
+# Dictionary to store keyword frequencies
+keyword_freq = {keyword: 0 for keyword in keywords}
+
+# Count keyword frequencies in comments
+for comment, likes in comments:
+    for keyword in keywords:
+        if keyword in comment.lower():
+            keyword_freq[keyword] += 1
+
+# Sort keywords by frequency in descending order
+sorted_keywords = sorted(keyword_freq.items(), key=lambda x: x[1], reverse=True)
+
+# Extract sorted keywords from sorted list of tuples
+top_trending_topics = [keyword for keyword, freq in sorted_keywords]
+
+# Display the top trending topics
+print("Top Trending Topics:")
+for topic in top_trending_topics:
+    print(topic)
+Sample Output :
+Top Trending Topics:
+product
+quality
+recommend
+delivery
+customer service
